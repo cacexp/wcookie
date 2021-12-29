@@ -1,14 +1,14 @@
 [package]
 name = "wcookie"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Juan Cáceres <cacexp@gmail.com>"]
 license = "Apache-2.0"
 readme="README.md"
 description = "wcookie represents the cookie set by a HTTP server written in Rust."
-homepage = "https://github.com/cacexp/wserver"
-repository = "https://github.com/cacexp/wserver"
-documentation = "https://docs.rs/wserver/"
+homepage = "https://github.com/cacexp/wcookie"
+repository = "https://github.com/cacexp/wcookie"
+documentation = "https://docs.rs/wcookie/"
 categories = ["network-programming", "web-programming::http-client"]
 # Ignore files used in tests
 
