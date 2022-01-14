@@ -112,7 +112,7 @@
 //! 
 //! let mut cookie = SetCookie::new("cookie_name", "cookie_value");
 //! cookie.domain = Some(String::from("myserver.com"));
-//! cookie.expires = Some(Utc.ymd(2014, 7, 8).and_hms(9, 10, 11));
+//! cookie.expires = Some(Utc.ymd(2024, 7, 8).and_hms(9, 10, 11));
 //! 
 //! ```
 //! 
@@ -186,7 +186,7 @@ impl Error for ParseError {
 }
 
 /// Represents a cookie sent at a `Cookie` header at an HTTP Request.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq,Eq)]
 pub struct Cookie {
     // Cookie name
     pub name: String,
@@ -218,8 +218,17 @@ impl Hash for Cookie {
     }
 }
 
+impl FromStr for Cookie {
+    type Err = ParseError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let (key, value) = parse_cookie_value(s)?;
+        Ok(Cookie::new(key, value))    
+    }
+}
+
 /// Enum with `SameSite` possible values for `Set-Cookie` attribute
-#[derive(Debug,Copy,Clone,PartialEq)]
+#[derive(Debug,Copy,Clone,PartialEq,Eq)]
 pub enum SameSiteValue {Strict, Lax, None}
 
 impl FromStr for SameSiteValue {

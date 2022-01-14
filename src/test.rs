@@ -474,3 +474,31 @@ fn test_cookie_new1() {
 
     assert_eq!(&cookie1, &cookie2);
 }
+
+#[test]
+fn test_cookie_eq1() {
+    let cookie1 = Cookie::new("cookie1", "1222343");
+    let cookie2 = Cookie::from_str("cookie1=1222343").unwrap();
+    assert_eq!(&cookie1, &cookie2);
+}
+
+#[test]
+fn test_cookie_eq2() {
+    let cookie1 = Cookie::new("cookie1", "1222343");
+    let cookie2 = Cookie::from_str("cookie=1222343").unwrap();
+    assert_ne!(&cookie1, &cookie2);
+}
+
+#[test]
+fn test_cookie_eq3() {
+    let cookie1 = Cookie::new("Cookie1", "1222343");
+    let cookie2 = Cookie::from_str("cookie1=1222343").unwrap();
+    assert_ne!(&cookie1, &cookie2);
+}
+
+#[test]
+fn test_cookie_eq4() {
+    let cookie1 = Cookie::new("cookie1", "122234");
+    let cookie2 = Cookie::from_str("cookie1=1222343").unwrap();
+    assert_ne!(&cookie1, &cookie2);
+}
