@@ -14,7 +14,7 @@
 
 use crate::*;
 use chrono::{DateTime, Utc, NaiveDate};
-use std::time::{Duration};
+use std::time::Duration;
 
 macro_rules! assert_invalid_data {
     ($a: expr) => {
@@ -213,9 +213,8 @@ fn test_parse_cookie_expires_right1() {
 
     if let CookieDirective::Expires(date) = result.unwrap() {
         let naive =
-            NaiveDate::from_ymd(1994,11,6)
-            .and_hms(8,49,37);
-        let time = DateTime::<Utc>::from_utc(naive, Utc);
+            NaiveDate::from_ymd_opt(1994,11,6).unwrap().and_hms_opt(8,49,37).unwrap();
+        let time = DateTime::<Utc>::from_naive_utc_and_offset(naive, Utc);
        
         assert_eq!(date, time);
     } else {
@@ -232,9 +231,9 @@ fn test_parse_cookie_expires_right2() {
 
     if let CookieDirective::Expires(date) = result.unwrap() {
         let naive =
-            NaiveDate::from_ymd(1994,11,6)
-            .and_hms(8,49,37);
-        let time = DateTime::<Utc>::from_utc(naive, Utc);
+            NaiveDate::from_ymd_opt(1994,11,6).unwrap()
+            .and_hms_opt(8,49,37).unwrap();
+        let time = DateTime::<Utc>::from_naive_utc_and_offset(naive, Utc);
         
         assert_eq!(date, time);
     } else {
@@ -254,9 +253,8 @@ fn test_parse_cookie_expires_right3() {
 
     if let CookieDirective::Expires(date) = result.unwrap() {
         let naive =
-            NaiveDate::from_ymd(1994,11,06)
-            .and_hms(8,49,37);
-        let time = DateTime::<Utc>::from_utc(naive, Utc);
+            NaiveDate::from_ymd_opt(1994,11,06).unwrap().and_hms_opt(8,49,37).unwrap();
+        let time = DateTime::<Utc>::from_naive_utc_and_offset(naive, Utc);
        
         assert_eq!(date, time);
     } else {
@@ -276,9 +274,8 @@ fn test_parse_cookie_expires_right4() {
 
     if let CookieDirective::Expires(date) = result.unwrap() {
         let naive =
-            NaiveDate::from_ymd(2023,11,15)
-            .and_hms(9,13,29);
-        let time = DateTime::<Utc>::from_utc(naive, Utc);
+            NaiveDate::from_ymd_opt(2023,11,15).unwrap().and_hms_opt(9,13,29).unwrap();
+        let time = DateTime::<Utc>::from_naive_utc_and_offset(naive, Utc);
        
         assert_eq!(date,time);
     } else {

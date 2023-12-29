@@ -1,4 +1,4 @@
-use wcookie::{SetCookie};
+use wcookie::SetCookie;
 use std::str::FromStr;
 
 pub fn main() {

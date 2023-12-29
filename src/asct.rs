@@ -45,9 +45,12 @@ pub fn parse_asct_date(date: &str) -> Result<DateTime<Utc>, ParseError> {
 
         let year: i32 = captures.get(7).unwrap().as_str().parse().unwrap();
        
-        let naive = NaiveDate::from_ymd(year, month, day).and_hms(hour,min,secs);
+        let naive = NaiveDate::from_ymd_opt(year, month, day)
+            .ok_or(ParseError::new("Invalid date"))?
+            .and_hms_opt(hour,min,secs)
+            .ok_or(ParseError::new("Invalid date"))?;
 
-        return Ok(DateTime::<Utc>::from_utc(naive, Utc));
+        return Ok(DateTime::<Utc>::from_naive_utc_and_offset(naive, Utc));
 
     } else {
         return Err(ParseError::new("Invalid date"));
