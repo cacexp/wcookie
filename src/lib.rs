@@ -31,7 +31,7 @@
 //! 
 //!  `Set-Cookie: user=john@smith; Expires=Thu, 31 Oct 2021 07:28:00 GMT; Secure`
 //! 
-//!  The type [SetCookie](crate::SetCookie) represents a server cookie. To parse a `Set-Cookie` header value it has a `from_string` function:
+//!  The type [SetCookie] represents a server cookie. To parse a `Set-Cookie` header value it has a `from_string` function:
 //! 
 //! ```rust
 //! use wcookie::SetCookie;
@@ -83,7 +83,7 @@
 //! * [SetCookie::use_in_request_domain](crate::SetCookie::use_in_request_domain)
 //! * [SetCookie::use_in_request_path](crate::SetCookie::use_in_request_path)   
 //! 
-//! A `SetCookie` can be converted into a [Cookie](crate::Cookie) to be incluided in a `Cookie` header:
+//! A `SetCookie` can be converted into a [Cookie] to be incluided in a `Cookie` header:
 //! 
 //! ```rust
 //! use wcookie::SetCookie;
@@ -320,7 +320,7 @@ impl SetCookie {
         }
     }
 
-    /// Generates a [Cookie](crate::Cookie) to be used in an HTTP Request
+    /// Generates a [Cookie] to be used in an HTTP Request
     pub fn to_cookie (& self) -> Cookie {
         Cookie {
             name: self.name.clone(),
